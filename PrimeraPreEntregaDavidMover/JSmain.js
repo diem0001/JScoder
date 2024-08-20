@@ -1,9 +1,10 @@
+// variables con los datos que se van a ir modificando segun lo que decida el usuario
 let dias = 0;
 let salud = 100;
 let hambre = 50;
 let recursos = 50;
 let salir = true
-
+//funcion para mostarar el estado actual
 function estado(){
     console.log("dias "+ dias);
     console.log("salud " + salud);
@@ -11,7 +12,7 @@ function estado(){
     console.log("recursos "+ recursos);
     console.log("********************");
 }
-
+// funcion "menu" para decidir la accion 
 function tomarDecision(){
     
     let decision = parseInt(prompt("Elija una opcion 1-Buscar comida, 2- construir refugio, 3- explorar isla, 4- descansar, 5- salir" ));
@@ -39,7 +40,7 @@ function tomarDecision(){
     }
 }
 
-
+// funciones 
 function buscarComida(){
 
     console.log("Buscando comida...");
@@ -78,7 +79,7 @@ function descansar(){
     console.log("recuperaste salud pero te despertaste con hambre");
 
 }
-
+// bucle que invoca las funciones
 while(salud >= 0 && salir){
     dias++;
     estado();
