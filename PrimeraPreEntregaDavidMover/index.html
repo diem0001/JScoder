@@ -8,7 +8,7 @@
     <style>
         /* Aplica un color de fondo a todo el HTML */
         body {
-            background-color: #175bd8; /* Puedes cambiar el color según tu preferencia */
+            background-color: #5e8ce2; /* Puedes cambiar el color según tu preferencia */
             margin: 60;
             padding: 10;
             font-family: Arial, sans-serif;
@@ -42,6 +42,49 @@
     <h1>PRIMERA PRE ENTREGA DAVID MOVER</h1>
 
     <img src="./img/survivorLogo.png" alt="imag survivor">
+
+    <h2>Descripción del Juego</h2>
+    <p><strong>Título del Juego:</strong> Supervivencia en la Isla</p>
+    <p><strong>Descripción:</strong> En "Supervivencia en la Isla", te encuentras varado en una isla desierta y debes tomar decisiones para sobrevivir. Tu objetivo es mantener tus niveles de salud, hambre y recursos mientras exploras la isla, construyes refugios, buscas comida o descansas. El juego continúa hasta que tu salud llegue a cero, mueras de hambre, o decidas salir del juego.</p>
+
+    <h2>Valores por Defecto</h2>
+    <ul>
+        <li><strong>Días:</strong> 0 (empieza en 0 y aumenta cada vez que realizas una acción)</li>
+        <li><strong>Salud:</strong> 100 (empieza en 100 y disminuye o aumenta según las acciones)</li>
+        <li><strong>Hambre:</strong> 50 (empieza en 50 y aumenta con el tiempo, disminuye o aumenta según las acciones)</li>
+        <li><strong>Recursos:</strong> 50 (empieza en 50 y aumenta o disminuye según las acciones)</li>
+    </ul>
+
+    <h2>Cambios Según la Acción</h2>
+    <ul>
+        <li><strong>Buscar Comida:</strong>
+            <ul>
+                <li><strong>Salud:</strong> -5 (disminuye la salud en 5 debido al esfuerzo)</li>
+                <li><strong>Hambre:</strong> -10 (disminuye el hambre en 10 al encontrar comida)</li>
+                <li><strong>Recursos:</strong> +10 (aumenta los recursos en 10 al encontrar comida)</li>
+            </ul>
+        </li>
+        <li><strong>Construir Refugio:</strong>
+            <ul>
+                <li><strong>Salud:</strong> +10 (aumenta la salud en 10 por el descanso y el esfuerzo)</li>
+                <li><strong>Hambre:</strong> +5 (aumenta el hambre en 5 debido al trabajo realizado)</li>
+                <li><strong>Recursos:</strong> -10 (disminuye los recursos en 10 al usar materiales para construir el refugio)</li>
+            </ul>
+        </li>
+        <li><strong>Explorar Isla:</strong>
+            <ul>
+                <li><strong>Salud:</strong> -5 (disminuye la salud en 5 debido al esfuerzo)</li>
+                <li><strong>Hambre:</strong> +5 (aumenta el hambre en 5 por el esfuerzo)</li>
+                <li><strong>Recursos:</strong> +10 (aumenta los recursos en 10 al encontrar recursos durante la exploración)</li>
+            </ul>
+        </li>
+        <li><strong>Descansar:</strong>
+            <ul>
+                <li><strong>Salud:</strong> +10 (aumenta la salud en 10 al descansar)</li>
+                <li><strong>Hambre:</strong> +5 (aumenta el hambre en 5 debido a la falta de comida mientras descansas)</li>
+            </ul>
+        </li>
+    </ul>
 
 
     <script src="./JSmain.js"></script>
