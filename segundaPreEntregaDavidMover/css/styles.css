@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    text-align: left; /* Alinea el texto a la izquierda */
+    width: 100%;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px; /* Establece un ancho máximo para mantener el contenido alineado a la izquierda */
+    margin: 0; /* Asegura que no haya margen adicional alrededor del main */
+}
+
+section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left; /* Alinea el texto de las secciones a la izquierda */
+}
+
+h2 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: left; /* Alinea el texto del footer a la izquierda */
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
