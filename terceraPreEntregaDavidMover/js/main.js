@@ -1,133 +1,124 @@
 const productos = [
     {
         id: "vino01",
-        titulo: "luigi",
+        titulo: "Luigi",
         imagen: "./img/vino malbec.webp",
         categoria: {
-            nombre:"luigibosca",
-            id:"malbec"
+            nombre: "Luigi Bosca",
+            id: "malbec"
         },
         precio: 1000,
-
     },
     {
         id: "vino02",
-        titulo: "rutini",
+        titulo: "Rutini",
         imagen: "./img/vino cabernet.webp",
         categoria: {
-            nombre:"rutini",
-            id:"cabernet"
+            nombre: "Rutini",
+            id: "cabernet"
         },
         precio: 1000,
-
     },
     {
         id: "vino03",
-        titulo: "luigi",
+        titulo: "Luigi",
         imagen: "./img/vino pinot.webp",
         categoria: {
-            nombre:"rutini",
-            id:"pinot"
+            nombre: "Rutini",
+            id: "pinot"
         },
         precio: 1000,
-
     }
-]
+];
 
 const contenedorProductos = document.querySelector('#contenedor-productos');
 const botonesCategorias = document.querySelectorAll('.boton-categoria');
 const tituloPrincipal = document.querySelector('#titulo-principal');
-let botonesAgregar = document.querySelectorAll('.producto-agregar');
 const numero = document.querySelector('#numero');
 
-function cargarProductos(productosElegidos){
+let productosEnCarrito = JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
 
-    contenedorProductos.innerHTML = "";
-
-    productosElegidos.forEach(producto=>{
-
-        const div = document.createElement("div");
-        div.classList.add("productos");
-        div.innerHTML = ` 
-            
-                <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">${producto.titulo}</h3>
-                        <p class="producto-precio">${producto.precio}</p>
-                        <button class="producto-agregar" id=${producto.id}>Agregar</button>
-                    </div>
-            
-        ` ;
-
-        contenedorProductos.append(div);
-    })
-    actualizarBotonesAgregar()
+// Inicializa la aplicación
+function init() {
+    cargarProductos(productos);
+    actualizarNumero();
+    agregarEventosCategoria();
 }
-cargarProductos(productos);
 
-botonesCategorias.forEach(boton =>{
-    boton.addEventListener("click",(e) => {
+// Cargar productos en el contenedor
+function cargarProductos(productosElegidos) {
+    contenedorProductos.innerHTML = ""; // Limpiar contenedor antes de cargar productos
 
-        botonesCategorias.forEach(boton => boton.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-        
+    productosElegidos.forEach(producto => {
+        const cardProducto = crearCardProducto(producto);
+        contenedorProductos.innerHTML += cardProducto; // Agregar cada tarjeta al contenedor
+    });
 
-        if(e.currentTarget.id != "todos"){
-            const productoCategoria =productos.find(producto => producto.categoria.id ===e.currentTarget.id)
+    actualizarBotonesAgregar();
+}
 
-            tituloPrincipal.innerText = productoCategoria.categoria.id
+// Crea el HTML para un producto
+function crearCardProducto(producto) {
+    return `
+        <div class="productos">
+            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+            <div class="producto-detalles">
+                <h3 class="producto-titulo">${producto.titulo}</h3>
+                <p class="producto-precio">${producto.precio} €</p>
+                <button class="producto-agregar" id="${producto.id}">Agregar</button>
+            </div>
+        </div>
+    `;
+}
 
-            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id)
-            cargarProductos(productosBoton);
-        }else{
-            tituloPrincipal.innerText = "Todos los productos"
-            cargarProductos(productos);
-        }
-    })
-});
-
-function actualizarBotonesAgregar(){
-    botonesAgregar = document.querySelectorAll('.producto-agregar')
-
-    botonesAgregar.forEach(boton =>{
-        boton.addEventListener("click",agregarAlCarrito)
+// Agrega eventos a los botones de agregar
+function actualizarBotonesAgregar() {
+    const botonesAgregar = document.querySelectorAll('.producto-agregar');
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
     });
 }
 
-let productosEnCarrito;
+// Agrega un producto al carrito
+function agregarAlCarrito(e) {
+    const productoAgregado = productos.find(producto => producto.id === e.currentTarget.id);
+    const productoExistente = productosEnCarrito.find(producto => producto.id === productoAgregado.id);
 
-let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
-
-
-if(productosEnCarritoLS){
-
-    productosEnCarrito = JSON.parse(productosEnCarritoLS) ;
-    actualizarNumero()
-}else{
-    productosEnCarrito = [];
-}
-
-function agregarAlCarrito(e){
-
-    const idBoton = e.currentTarget.id
-    const productoAgregado = productos.find(producto => producto.id === idBoton);
-
-    if(productosEnCarrito.some(producto => producto.id === idBoton)){
-        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-        productosEnCarrito[index].cantidad++;
-    }else{
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
         productoAgregado.cantidad = 1;
         productosEnCarrito.push(productoAgregado);
     }
 
-    actualizarNumero()
-    
-
+    actualizarNumero();
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
 
-function actualizarNumero(){
-    let nuevoNumero = productosEnCarrito.reduce((acc,producto)=> acc + producto.cantidad, 0)
-    numero.innerText = nuevoNumero
+// Actualiza el número de productos en el carrito
+function actualizarNumero() {
+    numero.innerText = productosEnCarrito.reduce((acc, producto) => acc + (producto.cantidad || 0), 0);
 }
 
+// Filtra productos por categoría
+function filtrarProductosPorCategoria(categoriaId) {
+    return categoriaId === "todos" ? productos : productos.filter(producto => producto.categoria.id === categoriaId);
+}
+
+// Agrega eventos a los botones de categoría
+function agregarEventosCategoria() {
+    botonesCategorias.forEach(boton => {
+        boton.addEventListener("click", (e) => {
+            botonesCategorias.forEach(b => b.classList.remove("active"));
+            e.currentTarget.classList.add("active");
+
+            const categoriaId = e.currentTarget.id;
+            const productosFiltrados = filtrarProductosPorCategoria(categoriaId);
+            tituloPrincipal.innerText = categoriaId !== "todos" ? categoriaId : "Todos los productos";
+            cargarProductos(productosFiltrados);
+        });
+    });
+}
+
+// Inicializar la aplicación al cargar
+init();

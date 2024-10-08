@@ -1,0 +1,23 @@
+[
+    {
+        "id": "malbec01",
+        "titulo": "Luigi Bosca",
+        "imagen": "./img/vino01.png",
+        "categoria": "Malbec",
+        "precio": 1000
+    },
+    {
+        "id": "cabernet02",
+        "titulo": "Rutini",
+        "imagen": "./img/vino02.png",
+        "categoria": "Cabernet",
+        "precio": 1200
+    },
+    {
+        "id": "pinotnoir03",
+        "titulo": "Luigi Bosca",
+        "imagen": "./img/vino03.png",
+        "categoria": "Pinot Noir",
+        "precio": 1500
+    }
+]
