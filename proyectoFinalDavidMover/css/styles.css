@@ -128,16 +128,16 @@ main {
  
 }
 h2 {
-    font-size: 24px; /* Tamaño del texto */
-    color: #ffffff; /* Color del texto */
-    text-align: center; /* Alineación al centro */
-    text-transform: uppercase; /* Poner el texto en mayúsculas */
-    letter-spacing: 2px; /* Espaciado entre letras */
-    margin-top: 20px; /* Espaciado superior */
-    margin-bottom: 20px; /* Espaciado inferior */
+    font-size: 24px; 
+    color: #ffffff; 
+    text-align: center; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
     
     display: inline-block;
-    padding-bottom: 10px; /* Espaciado debajo del texto */
+    padding-bottom: 10px; 
 }
 
 
@@ -178,7 +178,7 @@ h2 {
 
 
 .producto img {
-    max-width: 50%; /* Ajuste para que la imagen no se desborde */
+    max-width: 50%; 
     height: auto;
     display: flex;
     margin: 0 auto;
